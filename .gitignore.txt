@@ -1,0 +1,27 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.pdb
+*.obj
+*.exe
+*.dll
+*.lib
+
+# Carpeta de compilación y paquetes NuGet
+bin/
+obj/
+packages/
+project.assets.json
+project.nuget.cache
+.nuget/
+
+# Misc
+*.log
+*.bak
+*.tmp
+*.resharper
+*.sln.docstates
+_ReSharper.*/
+TestResults/

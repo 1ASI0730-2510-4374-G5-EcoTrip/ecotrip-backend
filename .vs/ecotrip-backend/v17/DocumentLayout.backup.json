@@ -1,0 +1,118 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\auth\\application\\dtos\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\auth\\application\\dtos\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\auth\\application\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\auth\\application\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\auth\\application\\dtos\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\auth\\application\\dtos\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|c:\\users\\akami\\onedrive\\desktop\\ecotrip-backend\\ecotrip-backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A7CFAD0-C98D-441E-ACCD-B7C376E8661C}|ecotrip-backend\\ecotrip-backend.csproj|solutionrelative:ecotrip-backend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ecotrip-backend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T14:31:30.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthResponse.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\AuthResponse.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\Auth\\Application\\DTOs\\AuthResponse.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\AuthResponse.cs",
+              "RelativeToolTip": "ecotrip-backend\\Auth\\Application\\DTOs\\AuthResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T14:29:18.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\Auth\\Application\\DTOs\\LoginRequest.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\LoginRequest.cs",
+              "RelativeToolTip": "ecotrip-backend\\Auth\\Application\\DTOs\\LoginRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T14:28:56.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\Auth\\Application\\DTOs\\RegisterRequest.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Auth\\Application\\DTOs\\RegisterRequest.cs",
+              "RelativeToolTip": "ecotrip-backend\\Auth\\Application\\DTOs\\RegisterRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T14:28:35.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Program.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\Program.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\Program.cs",
+              "RelativeToolTip": "ecotrip-backend\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T13:57:38.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "ecotrip-backend\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\WeatherForecast.cs",
+              "RelativeToolTip": "ecotrip-backend\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T13:57:37.62Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

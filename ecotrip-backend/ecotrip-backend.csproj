@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ecotrip_backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle" Version="5.6.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
+    <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Agency\Application\" />
+    <Folder Include="Agency\Domain\" />
+    <Folder Include="Agency\Infrastructure\" />
+    <Folder Include="Auth\Domain\" />
+    <Folder Include="Auth\Infrastructure\" />
+    <Folder Include="Experience\Application\" />
+    <Folder Include="Experience\Domain\" />
+    <Folder Include="Experience\Infrastructure\" />
+    <Folder Include="Reservations\Apliccation\" />
+    <Folder Include="Reservations\Domain\" />
+    <Folder Include="Reservations\Infrastructure\" />
+    <Folder Include="Shared\Apliccation\" />
+    <Folder Include="Shared\Domain\" />
+    <Folder Include="Shared\Infrastructure\" />
+    <Folder Include="test\" />
+    <Folder Include="Tourist\Apliccation\" />
+    <Folder Include="Tourist\Domain\" />
+    <Folder Include="Tourist\Infraestructure\" />
+  </ItemGroup>
+
+</Project>
