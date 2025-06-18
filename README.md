@@ -1,1 +1,0 @@
-# ecotrip-backend
