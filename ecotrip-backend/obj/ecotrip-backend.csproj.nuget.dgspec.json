@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj": {}
+    "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj": {
+    "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
+        "projectUniqueName": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
         "projectName": "ecotrip-backend",
-        "projectPath": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
+        "projectPath": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
         "packagesPath": "C:\\Users\\akami\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akami\\OneDrive\\Desktop\\ecotrip-backend\\ecotrip-backend\\obj\\",
+        "outputPath": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
