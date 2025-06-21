@@ -1,5 +1,7 @@
 using ecotrip_backend.Auth.Application.DTOs;
-using ecotrip_backend.Auth.Domain;
+using ecotrip_backend.Auth.Domain.Aggregates;
+using ecotrip_backend.Auth.Domain.Repositories.Interfaces;
+using ecotrip_backend.Auth.Application.Services.Interfaces;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -7,34 +9,48 @@ namespace ecotrip_backend.Auth.Application.Services;
 
 public class AuthService : IAuthService
 {
-    private readonly Dictionary<string, User> _users = new();
+    private readonly IUserRepository _userRepository;
 
-    public Task<AuthResponse> RegisterAsync(RegisterRequest request)
+    public AuthService(IUserRepository userRepository)
     {
-        if (_users.ContainsKey(request.Email.ToLowerInvariant()))
+        _userRepository = userRepository;
+    }
+
+    public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
+    {
+        if (await _userRepository.ExistsAsync(request.Email))
             throw new InvalidOperationException("Email already registered");
 
         var hashedPassword = HashPassword(request.Password);
-        var user = User.Create(request.Email, hashedPassword, request.UserType);
+        User user = request.UserType switch
+        {
+            "Tourist" => TouristUser.Create(request.Email, hashedPassword),
+            "Agency" => AgencyUser.Create(request.Email, hashedPassword),
+            _ => throw new ArgumentException("Invalid user type")
+        };
         
-        _users[user.Email] = user;
+        await _userRepository.CreateAsync(user);
 
         var token = GenerateToken(user);
-        return Task.FromResult(new AuthResponse(token, user.Email, user.UserType));
+        return new AuthResponse(token, user.Email, user.UserType);
     }
 
-    public Task<AuthResponse> LoginAsync(LoginRequest request)
-    {
-        var normalizedEmail = request.Email.ToLowerInvariant();
-        if (!_users.TryGetValue(normalizedEmail, out var user))
-            throw new InvalidOperationException("Invalid credentials");
+    public async Task<AuthResponse> LoginAsync(LoginRequest request)
+    {        if (request.UserType != "Tourist" && request.UserType != "Agency")
+            throw new ArgumentException("El tipo de usuario debe ser 'Tourist' o 'Agency'");
 
-        var hashedPassword = HashPassword(request.Password);
-        if (hashedPassword != user.PasswordHash)
-            throw new InvalidOperationException("Invalid credentials");
+        var user = await _userRepository.GetByEmailAsync(request.Email.ToLowerInvariant());
+        if (user == null)
+            throw new InvalidOperationException("Credenciales inválidas");
+
+        if (user.UserType != request.UserType)
+            throw new InvalidOperationException("Este usuario no está registrado como " + request.UserType);
+
+        var hashedPassword = HashPassword(request.Password);if (hashedPassword != user.PasswordHash)
+            throw new InvalidOperationException("Credenciales inválidas");
 
         var token = GenerateToken(user);
-        return Task.FromResult(new AuthResponse(token, user.Email, user.UserType));
+        return new AuthResponse(token, user.Email, user.UserType);
     }
 
     private static string HashPassword(string password)

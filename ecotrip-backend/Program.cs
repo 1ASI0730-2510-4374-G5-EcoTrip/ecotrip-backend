@@ -1,9 +1,26 @@
 using Microsoft.OpenApi.Models;
 using ecotrip_backend.Auth.Application.Services;
+using ecotrip_backend.Auth.Application.Services.Interfaces;
+using ecotrip_backend.Auth.Domain.Repositories.Interfaces;
+using ecotrip_backend.Auth.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IAuthService, AuthService>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
+builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 
 builder.Services.AddEndpointsApiExplorer(); 
@@ -29,6 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
