@@ -19,7 +19,6 @@
     <Folder Include="Agency\Domain\" />
     <Folder Include="Agency\Infrastructure\" />
     <Folder Include="Auth\Domain\" />
-    <Folder Include="Auth\Infrastructure\" />
     <Folder Include="Experience\Application\" />
     <Folder Include="Experience\Domain\" />
     <Folder Include="Experience\Infrastructure\" />

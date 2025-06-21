@@ -1,65 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ecotrip_backend.Auth.Application.DTOs; 
-namespace ecotrip_backend.Controllers
+using ecotrip_backend.Auth.Application.DTOs;
+using ecotrip_backend.Auth.Application.Services;
+
+namespace ecotrip_backend.Controllers;
+
+[Route("api/[controller]")] 
+[ApiController]
+public class AuthController : ControllerBase
 {
-    [Route("api/[controller]")] 
-    [ApiController]
-    public class AuthController : ControllerBase
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
     {
-        /// <param name="request"
-        [HttpPost("register")] 
-        [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Register([FromBody] RegisterRequest request)
+        _authService = authService;
+    }
+
+    [HttpPost("register")] 
+    [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    {
+        try
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.UserType))
-            {
-                return BadRequest("Email, Password y UserType son requeridos.");
-            }
-
-            if (request.UserType != "Tourist" && request.UserType != "Agency")
-            {
-                return BadRequest("UserType debe ser 'Tourist' o 'Agency'.");
-            }
-            var token = $"simulated-jwt-token-for-{request.Email}-{request.UserType}";
-
-            var response = new AuthResponse
-            {
-                Token = token,
-                UserType = request.UserType,
-                Email = request.Email
-            };
-
+            var response = await _authService.RegisterAsync(request);
             return Ok(response);
         }
-
-        /// <param name="request"
-        [HttpPost("login")]
-        [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Login([FromBody] LoginRequest request)
+        catch (ArgumentException ex)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
-            {
-                return Unauthorized("Credenciales inválidas."); // En un caso real, esto sería 401
-            }
+            return BadRequest(ex.Message);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-            string userType = "Tourist"; 
-            if (request.Email.Contains("agency"))
-            {
-                userType = "Agency";
-            }
-
-            var token = $"simulated-jwt-token-for-{request.Email}-{userType}";
-
-            var response = new AuthResponse
-            {
-                Token = token,
-                UserType = userType,
-                Email = request.Email
-            };
-
+    [HttpPost("login")]
+    [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        try
+        {
+            var response = await _authService.LoginAsync(request);
             return Ok(response);
+        }
+        catch (InvalidOperationException)
+        {
+            return Unauthorized("Invalid credentials");
         }
     }
 }
