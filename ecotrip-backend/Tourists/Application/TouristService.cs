@@ -1,7 +1,7 @@
-using backendPrueva.Tourists.Application.DTos;
-using backendPrueva.Tourists.Domain;
+using ecotrip_backend.Tourists.Application.DTOs;
+using ecotrip_backend.Tourists.Domain;
 
-namespace backendPrueva.Tourists.Application;
+namespace ecotrip_backend.Tourists.Application;
 
 public class TouristService
 {
@@ -12,7 +12,7 @@ public class TouristService
         _repo = repo;
     }
 
-    public async Task<Tourist> RegisterAsync(RegisterTouristDto dto)
+    public async Task<TouristProfileDto> RegisterAsync(RegisterTouristDto dto)
     {
         var existing = await _repo.GetByEmailAsync(dto.Email);
         if (existing != null)
@@ -22,6 +22,57 @@ public class TouristService
 
         var tourist = new Tourist(dto.FullName, dto.Email, dto.Country);
         await _repo.AddAsync(tourist);
-        return tourist;
+        return MapToProfileDto(tourist);
+    }
+    
+    public async Task<TouristProfileDto?> GetProfileByIdAsync(Guid id)
+    {
+        var tourist = await _repo.GetByIdAsync(id);
+        if (tourist == null)
+            return null;
+            
+        return MapToProfileDto(tourist);
+    }
+    
+    public async Task<IEnumerable<TouristProfileDto>> GetAllProfilesAsync()
+    {
+        var tourists = await _repo.GetAllAsync();
+        return tourists.Select(MapToProfileDto);
+    }
+    
+    public async Task<TouristProfileDto?> UpdateProfileAsync(Guid id, UpdateTouristProfileDto dto)
+    {
+        var tourist = await _repo.GetByIdAsync(id);
+        if (tourist == null)
+            return null;
+            
+        tourist.UpdateProfile(dto.FullName, dto.Country, dto.Bio, dto.ProfilePictureUrl);
+        await _repo.UpdateAsync(tourist);
+        
+        return MapToProfileDto(tourist);
+    }
+    
+    public async Task<bool> DeleteProfileAsync(Guid id)
+    {
+        if (!await _repo.ExistsByIdAsync(id))
+            return false;
+            
+        await _repo.DeleteAsync(id);
+        return true;
+    }
+    
+    private TouristProfileDto MapToProfileDto(Tourist tourist)
+    {
+        return new TouristProfileDto
+        {
+            Id = tourist.Id,
+            FullName = tourist.FullName,
+            Email = tourist.Email,
+            Country = tourist.Country,
+            Bio = tourist.Bio,
+            ProfilePictureUrl = tourist.ProfilePictureUrl,
+            CreatedAt = tourist.CreatedAt,
+            UpdatedAt = tourist.UpdatedAt
+        };
     }
 }

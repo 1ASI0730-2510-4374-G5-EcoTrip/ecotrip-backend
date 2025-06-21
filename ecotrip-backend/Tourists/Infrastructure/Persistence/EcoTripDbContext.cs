@@ -1,7 +1,7 @@
-using backendPrueva.Tourists.Domain;
+using ecotrip_backend.Tourists.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace backendPrueva.Tourists.Infrastructure.Persistence;
+namespace ecotrip_backend.Tourists.Infrastructure.Persistence;
 
 public class EcoTripDbContext : DbContext
 {

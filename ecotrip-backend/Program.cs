@@ -3,14 +3,44 @@ using ecotrip_backend.Auth.Application.Services;
 using ecotrip_backend.Auth.Application.Services.Interfaces;
 using ecotrip_backend.Auth.Domain.Repositories.Interfaces;
 using ecotrip_backend.Auth.Infrastructure.Repositories;
+using ecotrip_backend.Auth.Infrastructure.Persistence;
+using ecotrip_backend.Tourists.Domain;
+using ecotrip_backend.Tourists.Infrastructure.EF;
+using ecotrip_backend.Tourists.Infrastructure.Persistence;
+using ecotrip_backend.Tourists.Application;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
-builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+// Database setup
+if (builder.Environment.IsDevelopment())
+{
+    // Use in-memory repository for development
+    builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+    
+    // For demonstration purposes, use in-memory DB for Tourist as well
+    builder.Services.AddDbContext<EcoTripDbContext>(options =>
+        options.UseInMemoryDatabase("TouristDb"));
+}
+else
+{
+    // Use SQL Server for production
+    builder.Services.AddDbContext<AuthDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    
+    // Configure Tourist DB for production
+    builder.Services.AddDbContext<EcoTripDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+}
+
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITouristRepository, TouristRepository>();
+builder.Services.AddScoped<TouristService>();
 
 builder.Services.AddCors(options =>
 {
@@ -30,7 +60,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "EcoTrip API",
         Version = "v1",
-        Description = "API para la gesti�n de usuarios, viajes y destinos de EcoTrip."
+        Description = "API para la gestión de usuarios, viajes y destinos de EcoTrip."
     });
 });
 
