@@ -5262,23 +5262,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aldair\\.nuget\\packages\\": {},
+    "C:\\Users\\akami\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aldair\\Documents\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
+      "projectUniqueName": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
       "projectName": "ecotrip-backend",
-      "projectPath": "C:\\Users\\Aldair\\Documents\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
-      "packagesPath": "C:\\Users\\Aldair\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aldair\\Documents\\GitHub\\ecotrip-backend\\ecotrip-backend\\obj\\",
+      "projectPath": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\ecotrip-backend.csproj",
+      "packagesPath": "C:\\Users\\akami\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\akami\\OneDrive\\Documentos\\GitHub\\ecotrip-backend\\ecotrip-backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Aldair\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\akami\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5365,7 +5365,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

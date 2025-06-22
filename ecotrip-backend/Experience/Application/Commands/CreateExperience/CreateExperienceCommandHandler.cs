@@ -7,9 +7,7 @@ using Experience.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 
 namespace Experience.Application.Commands.CreateExperience
-{    /// <summary>
-    /// Handler for creating a new experience
-    /// </summary>
+{
     public class CreateExperienceCommandHandler
     {
         private readonly IExperienceRepository _experienceRepository;
@@ -21,7 +19,9 @@ namespace Experience.Application.Commands.CreateExperience
         {
             _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }        public async Task<string> Handle(CreateExperienceCommand request, CancellationToken cancellationToken)
+        }
+
+        public async Task<string> Handle(CreateExperienceCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Creating new experience with title: {Title}", request.Title);
 
@@ -53,12 +53,8 @@ namespace Experience.Application.Commands.CreateExperience
                 // Persist the entity
                 await _experienceRepository.AddAsync(experience, cancellationToken);
 
-                _logger.LogInformation("Successfully created experience with ID: {ExperienceId}", experienceId);
+                _logger.LogInformation("Successfully created experience with ID: {ExperienceId}", experienceId);                // TODO: Publish domain event when event system is implemented
 
-                // TODO: Publish domain event when event system is implemented
-                // await _mediator.Publish(new ExperienceCreatedEvent(...), cancellationToken);
-
-                // Return the ID as a string
                 return experienceId.ToString();
             }
             catch (Exception ex)

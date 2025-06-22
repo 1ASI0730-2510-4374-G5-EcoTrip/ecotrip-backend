@@ -61,6 +61,10 @@ builder.Services.AddScoped<ListExperiencesQueryHandler>();
 builder.Services.AddScoped<ImageUploadService>();
 builder.Services.AddScoped<LocalFileImageStorage>();
 
+// Reservations services
+builder.Services.AddScoped<ecotrip_backend.Reservations.Domain.Repositories.IBookingRepository, ecotrip_backend.Reservations.Infrastructure.Persistence.BookingRepository>();
+builder.Services.AddScoped<ecotrip_backend.Reservations.Application.Services.BookingService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
