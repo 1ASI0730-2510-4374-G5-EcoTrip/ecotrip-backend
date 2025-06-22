@@ -30,9 +30,6 @@
     <Folder Include="Experience\Application\" />
     <Folder Include="Experience\Domain\" />
     <Folder Include="Experience\Infrastructure\" />
-    <Folder Include="Reservations\Apliccation\" />
-    <Folder Include="Reservations\Domain\" />
-    <Folder Include="Reservations\Infrastructure\" />
     <Folder Include="Shared\Apliccation\" />
     <Folder Include="Shared\Domain\" />
     <Folder Include="Shared\Infrastructure\" />
