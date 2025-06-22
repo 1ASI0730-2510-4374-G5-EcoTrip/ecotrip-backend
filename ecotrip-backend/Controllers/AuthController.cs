@@ -10,11 +10,10 @@ namespace ecotrip_backend.Controllers;
 [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 public class AuthController : ControllerBase
 {
-    private readonly IAuthService _authService;
-
-    public AuthController(IAuthService authService)
+    private readonly IAuthService _authService;    public AuthController(IAuthService authService)
     {
-        _authService = authService;    }
+        _authService = authService;
+    }
 
     [HttpPost("register")] 
     [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
@@ -32,11 +31,11 @@ public class AuthController : ControllerBase
         catch (ArgumentException ex)
         {
             return BadRequest(new { message = ex.Message });
-        }
-        catch (InvalidOperationException ex)
+        }        catch (InvalidOperationException ex)
         {
             return BadRequest(new { message = ex.Message });
-        }    }
+        }
+    }
 
     [HttpPost("login")]
     [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]

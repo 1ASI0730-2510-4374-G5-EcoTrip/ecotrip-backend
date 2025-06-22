@@ -5,28 +5,27 @@ using System.Threading.Tasks;
 using Experience.Application.DTOs;
 using Experience.Domain.Repositories;
 using Experience.Domain.ValueObjects;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Experience.Application.Queries.GetExperience
+namespace Experience.Application.Queries.GetExperience;
+
+/// <summary>
+/// Handler for retrieving a specific experience by ID
+/// </summary>
+public class GetExperienceQueryHandler
 {
-    /// <summary>
-    /// Handler for retrieving a specific experience by ID
-    /// </summary>
-    public class GetExperienceQueryHandler : IRequestHandler<GetExperienceQuery, ExperienceDetailsDTO>
+    private readonly IExperienceRepository _experienceRepository;
+    private readonly ILogger<GetExperienceQueryHandler> _logger;
+
+    public GetExperienceQueryHandler(
+        IExperienceRepository experienceRepository,
+        ILogger<GetExperienceQueryHandler> logger)
     {
-        private readonly IExperienceRepository _experienceRepository;
-        private readonly ILogger<GetExperienceQueryHandler> _logger;
+        _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-        public GetExperienceQueryHandler(
-            IExperienceRepository experienceRepository,
-            ILogger<GetExperienceQueryHandler> logger)
-        {
-            _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
-        public async Task<ExperienceDetailsDTO> Handle(GetExperienceQuery request, CancellationToken cancellationToken)
+    public async Task<ExperienceDetailsDTO?> Handle(GetExperienceQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Getting experience details for ID: {ExperienceId}", request.Id);
 
@@ -86,17 +85,14 @@ namespace Experience.Application.Queries.GetExperience
                 {
                     dto.AverageRating = 0;
                     dto.ReviewCount = 0;
-                }
+                }            _logger.LogInformation("Successfully retrieved experience with ID: {ExperienceId}", request.Id);
 
-                _logger.LogInformation("Successfully retrieved experience with ID: {ExperienceId}", request.Id);
-
-                return dto;
-            }
-            catch (Exception ex) when (ex is not ApplicationException)
-            {
-                _logger.LogError(ex, "Error retrieving experience {ExperienceId}: {ErrorMessage}", request.Id, ex.Message);
-                throw;
-            }
+            return dto;
+        }
+        catch (Exception ex) when (ex is not ApplicationException)
+        {
+            _logger.LogError(ex, "Error retrieving experience {ExperienceId}: {ErrorMessage}", request.Id, ex.Message);
+            throw;
         }
     }
 }

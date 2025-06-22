@@ -1,4 +1,4 @@
-namespace Experience.Domain.Enum
+namespace Experience.Domain.Enums
 {
     /// <summary>
     /// Represents the status of an Experience in the system

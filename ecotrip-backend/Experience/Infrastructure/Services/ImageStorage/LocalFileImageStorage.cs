@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Experience.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Experience.Infrastructure.Services.ImageStorage
 {
-    /// <summary>
-    /// Implementation of image storage that saves files to the local file system
-    /// </summary>
-    public class LocalFileImageStorage : IImageStorage
+    public class LocalFileImageStorage
     {
         private readonly string _baseDirectory;
         private readonly string _baseUrl;
@@ -115,9 +111,12 @@ namespace Experience.Infrastructure.Services.ImageStorage
                 
                 File.Delete(filePath);
                 _logger.LogInformation("Successfully deleted image at {FilePath}", filePath);
-                
-                // Try to clean up empty directory if this was the last image
-                TryCleanupDirectory(Path.GetDirectoryName(filePath));
+                  // Try to clean up empty directory if this was the last image
+                var directoryPath = Path.GetDirectoryName(filePath);
+                if (!string.IsNullOrEmpty(directoryPath))
+                {
+                    TryCleanupDirectory(directoryPath);
+                }
                 
                 return Task.FromResult(true);
             }

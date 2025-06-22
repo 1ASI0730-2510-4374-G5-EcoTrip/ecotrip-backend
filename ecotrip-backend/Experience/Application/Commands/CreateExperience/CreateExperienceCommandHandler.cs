@@ -1,39 +1,38 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Experience.Domain.Event;
+using Experience.Domain.Events;
 using Experience.Domain.Repositories;
 using Experience.Domain.ValueObjects;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Experience.Application.Commands.CreateExperience
-{
-    /// <summary>
+{    /// <summary>
     /// Handler for creating a new experience
     /// </summary>
-    public class CreateExperienceCommandHandler : IRequestHandler<CreateExperienceCommand, string>
+    public class CreateExperienceCommandHandler
     {
         private readonly IExperienceRepository _experienceRepository;
-        private readonly IMediator _mediator;
         private readonly ILogger<CreateExperienceCommandHandler> _logger;
 
         public CreateExperienceCommandHandler(
             IExperienceRepository experienceRepository,
-            IMediator mediator,
             ILogger<CreateExperienceCommandHandler> logger)
         {
             _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
-        public async Task<string> Handle(CreateExperienceCommand request, CancellationToken cancellationToken)
+        }        public async Task<string> Handle(CreateExperienceCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Creating new experience with title: {Title}", request.Title);
 
             try
             {
+                // Validate agent ID is provided
+                if (string.IsNullOrEmpty(request.AgentId))
+                {
+                    throw new ArgumentException("Agent ID is required", nameof(request.AgentId));
+                }
+
                 // Create domain entities and value objects
                 var experienceId = ExperienceId.Create();
                 var price = new Money(request.Price, request.Currency);
@@ -54,17 +53,10 @@ namespace Experience.Application.Commands.CreateExperience
                 // Persist the entity
                 await _experienceRepository.AddAsync(experience, cancellationToken);
 
-                // Publish domain event
-                await _mediator.Publish(new ExperienceCreatedEvent(
-                    experienceId,
-                    request.Title,
-                    request.Date,
-                    request.Location,
-                    request.DurationInDays,
-                    request.AgentId
-                ), cancellationToken);
-
                 _logger.LogInformation("Successfully created experience with ID: {ExperienceId}", experienceId);
+
+                // TODO: Publish domain event when event system is implemented
+                // await _mediator.Publish(new ExperienceCreatedEvent(...), cancellationToken);
 
                 // Return the ID as a string
                 return experienceId.ToString();

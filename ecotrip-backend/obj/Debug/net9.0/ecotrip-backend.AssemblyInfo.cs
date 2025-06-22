@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ecotrip-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49687429c51dc99873190941f2ed0b7df6a48280")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b03edd2ceef78a401c1b25fb3265adeef9f5a542")]
 [assembly: System.Reflection.AssemblyProductAttribute("ecotrip-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ecotrip-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

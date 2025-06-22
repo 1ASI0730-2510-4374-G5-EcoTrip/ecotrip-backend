@@ -1,22 +1,21 @@
 using System;
-using MediatR;
 
 namespace Experience.Application.Commands.CreateExperience
 {
     /// <summary>
     /// Command to create a new experience
     /// </summary>
-    public class CreateExperienceCommand : IRequest<string>
+    public class CreateExperienceCommand
     {
         /// <summary>
         /// Title of the experience
         /// </summary>
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         /// <summary>
         /// Description of the experience
         /// </summary>
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         /// <summary>
         /// The date when the experience will take place
@@ -26,7 +25,7 @@ namespace Experience.Application.Commands.CreateExperience
         /// <summary>
         /// Location where the experience will take place
         /// </summary>
-        public string Location { get; set; }
+        public required string Location { get; set; }
 
         /// <summary>
         /// Duration of the experience in days
@@ -41,16 +40,16 @@ namespace Experience.Application.Commands.CreateExperience
         /// <summary>
         /// Currency of the price (USD, EUR, etc.)
         /// </summary>
-        public string Currency { get; set; }
+        public required string Currency { get; set; }
 
         /// <summary>
         /// Main image URL for the experience
         /// </summary>
-        public string MainImageUrl { get; set; }
+        public required string MainImageUrl { get; set; }
 
         /// <summary>
         /// ID of the agent creating the experience
         /// </summary>
-        public string AgentId { get; set; }
+        public string? AgentId { get; set; }
     }
 }

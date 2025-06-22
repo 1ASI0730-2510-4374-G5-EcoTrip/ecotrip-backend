@@ -15,8 +15,6 @@ public class AuthDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
-        // Configure User as a table-per-hierarchy model
         modelBuilder.Entity<User>()
             .ToTable("Users")
             .HasDiscriminator<string>("UserType")

@@ -1,0 +1,881 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ecotrip-backend</name>
+    </assembly>
+    <members>
+        <member name="M:ecotrip_backend.Controllers.ExperienceController.GetAll">
+            <summary>
+            Gets all experiences
+            </summary>
+            <returns>List of experiences</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ExperienceController.GetById(System.String)">
+            <summary>
+            Gets an experience by ID
+            </summary>
+            <param name="id">Experience ID</param>
+            <returns>Experience details</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ExperienceController.Create(Experience.Application.Commands.CreateExperience.CreateExperienceCommand)">
+            <summary>
+            Creates a new experience
+            </summary>
+            <param name="command">Experience creation data</param>
+            <returns>The created experience ID</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ExperienceController.Update(System.String,Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand)">
+            <summary>
+            Updates an existing experience
+            </summary>
+            <param name="id">Experience ID</param>
+            <param name="command">Experience update data</param>
+            <returns>No content</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ExperienceController.Delete(System.String)">
+            <summary>
+            Deletes an experience
+            </summary>
+            <param name="id">Experience ID</param>
+            <returns>No content</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ImageUploadController.UploadSingleImage(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads a single image for an experience
+            </summary>
+            <param name="experienceId">ID of the experience</param>
+            <param name="file">Image file to upload</param>
+            <returns>URL of the uploaded image</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ImageUploadController.UploadMultipleImages(System.String,Microsoft.AspNetCore.Http.IFormFileCollection)">
+            <summary>
+            Uploads multiple images for an experience
+            </summary>
+            <param name="experienceId">ID of the experience</param>
+            <param name="files">Collection of image files to upload</param>
+            <returns>URLs of the uploaded images</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ImageUploadController.DeleteImage(System.String,System.String)">
+            <summary>
+            Deletes an image
+            </summary>
+            <param name="experienceId">ID of the experience</param>
+            <param name="imageUrl">URL of the image to delete</param>
+            <returns>Success message</returns>
+        </member>
+        <member name="M:ecotrip_backend.Controllers.ImageUploadController.SetMainImage(System.String,System.String)">
+            <summary>
+            Sets an image as the main image for an experience
+            </summary>
+            <param name="experienceId">ID of the experience</param>
+            <param name="imageUrl">URL of the image to set as main</param>
+            <returns>Success message</returns>
+        </member>
+        <member name="T:Experience.API.Models.CreateExperienceRequest">
+            <summary>
+            Request model for creating a new experience
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Description">
+            <summary>
+            Description of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Date">
+            <summary>
+            The date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Location">
+            <summary>
+            Location where the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Price">
+            <summary>
+            Price of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.Currency">
+            <summary>
+            Currency of the price (USD, EUR, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.API.Models.CreateExperienceRequest.MainImageUrl">
+            <summary>
+            Main image URL for the experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.CreateExperience.CreateExperienceCommand">
+            <summary>
+            Command to create a new experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Description">
+            <summary>
+            Description of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Date">
+            <summary>
+            The date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Location">
+            <summary>
+            Location where the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Price">
+            <summary>
+            Price of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.Currency">
+            <summary>
+            Currency of the price (USD, EUR, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.MainImageUrl">
+            <summary>
+            Main image URL for the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.CreateExperience.CreateExperienceCommand.AgentId">
+            <summary>
+            ID of the agent creating the experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.CreateExperience.CreateExperienceCommandHandler">
+            <summary>
+            Handler for creating a new experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.DeleteExperience.DeleteExperienceCommand">
+            <summary>
+            Command to delete an experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.DeleteExperience.DeleteExperienceCommand.Id">
+            <summary>
+            ID of the experience to delete
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.DeleteExperience.DeleteExperienceCommand.AgentId">
+            <summary>
+            ID of the agent requesting deletion
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.DeleteExperience.DeleteExperienceCommand.IsAdmin">
+            <summary>
+            Flag indicating if the request comes from an admin user
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.DeleteExperience.DeleteExperienceCommandHandler">
+            <summary>
+            Handler for deleting an experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand">
+            <summary>
+            Command to update an existing experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Id">
+            <summary>
+            ID of the experience to update
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Description">
+            <summary>
+            Description of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Date">
+            <summary>
+            The date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Location">
+            <summary>
+            Location where the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Price">
+            <summary>
+            Price of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.Currency">
+            <summary>
+            Currency of the price (USD, EUR, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommand.AgentId">
+            <summary>
+            ID of the agent updating the experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Commands.UpdateExperience.UpdateExperienceCommandHandler">
+            <summary>
+            Handler for updating an existing experience
+            </summary>
+        </member>
+        <member name="T:Experience.Application.DTOs.ExperienceDetailsDTO">
+            <summary>
+            Data Transfer Object containing detailed information about an experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Id">
+            <summary>
+            Unique identifier of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Description">
+            <summary>
+            Detailed description of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Date">
+            <summary>
+            The date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Location">
+            <summary>
+            Location where the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Price">
+            <summary>
+            Price amount of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Currency">
+            <summary>
+            Currency code of the price (USD, EUR, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.FormattedPrice">
+            <summary>
+            Formatted price with currency symbol
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.MainImageUrl">
+            <summary>
+            URL of the main image for the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.ImageUrls">
+            <summary>
+            Collection of additional image URLs for the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.AgentId">
+            <summary>
+            ID of the agent who created the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.AgentName">
+            <summary>
+            Name of the agent who created the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Status">
+            <summary>
+            Current status of the experience (Draft, Published, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.Reviews">
+            <summary>
+            Collection of reviews for the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.AverageRating">
+            <summary>
+            Average rating based on reviews
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.ReviewCount">
+            <summary>
+            Total number of reviews
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.CreatedAt">
+            <summary>
+            When the experience was created
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDetailsDTO.UpdatedAt">
+            <summary>
+            When the experience was last updated
+            </summary>
+        </member>
+        <member name="T:Experience.Application.DTOs.ReviewDTO">
+            <summary>
+            Data Transfer Object for review information
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.Id">
+            <summary>
+            Unique identifier of the review
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.UserId">
+            <summary>
+            ID of the user who wrote the review
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.UserName">
+            <summary>
+            Name of the user who wrote the review
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.Rating">
+            <summary>
+            Rating given in the review (1-5)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.Comment">
+            <summary>
+            Comment text in the review
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.IsVerified">
+            <summary>
+            Whether the review is from a verified purchaser
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ReviewDTO.CreatedAt">
+            <summary>
+            When the review was created
+            </summary>
+        </member>
+        <member name="T:Experience.Application.DTOs.ExperienceDTO">
+            <summary>
+            Data Transfer Object for basic experience information in listings
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Id">
+            <summary>
+            Unique identifier of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Summary">
+            <summary>
+            Brief summary or excerpt of the experience description
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Date">
+            <summary>
+            The date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Location">
+            <summary>
+            Location where the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Price">
+            <summary>
+            Price amount of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Currency">
+            <summary>
+            Currency code of the price (USD, EUR, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.FormattedPrice">
+            <summary>
+            Formatted price with currency symbol
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.MainImageUrl">
+            <summary>
+            URL of the main image for the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.AgentId">
+            <summary>
+            ID of the agent who created the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.AgentName">
+            <summary>
+            Name of the agent who created the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.Status">
+            <summary>
+            Current status of the experience (Draft, Published, etc.)
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.AverageRating">
+            <summary>
+            Average rating based on reviews
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.ReviewCount">
+            <summary>
+            Total number of reviews
+            </summary>
+        </member>
+        <member name="P:Experience.Application.DTOs.ExperienceDTO.CreatedAt">
+            <summary>
+            When the experience was created
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Queries.GetExperience.GetExperienceQuery">
+            <summary>
+            Query to get a specific experience by ID
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.GetExperience.GetExperienceQuery.Id">
+            <summary>
+            ID of the experience to retrieve
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Queries.GetExperience.GetExperienceQueryHandler">
+            <summary>
+            Handler for retrieving a specific experience by ID
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Queries.ListExperience.ListExperiencesQuery">
+            <summary>
+            Query to list experiences with optional filtering and pagination
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.Skip">
+            <summary>
+            Number of items to skip for pagination
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.Take">
+            <summary>
+            Maximum number of items to return
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.LocationFilter">
+            <summary>
+            Optional filter by location
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.MinPrice">
+            <summary>
+            Optional filter by minimum price
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.MaxPrice">
+            <summary>
+            Optional filter by maximum price
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.FromDate">
+            <summary>
+            Optional filter by minimum date
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.ToDate">
+            <summary>
+            Optional filter by maximum date
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.SortBy">
+            <summary>
+            Property to sort by (e.g., "Date", "Price")
+            </summary>
+        </member>
+        <member name="P:Experience.Application.Queries.ListExperience.ListExperiencesQuery.SortAscending">
+            <summary>
+            Sort direction (true for ascending, false for descending)
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Queries.ListExperience.ListExperiencesQueryHandler">
+            <summary>
+            Handler for listing experiences with filtering, sorting, and pagination
+            </summary>
+        </member>
+        <member name="T:Experience.Application.Services.ImageUploadService">
+            <summary>
+            Service for handling experience image uploads
+            </summary>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.UploadImageAsync(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Upload a single image for an experience
+            </summary>
+            <param name="file">The image file to upload</param>
+            <param name="experienceId">ID of the experience</param>
+            <returns>URL path to the uploaded image</returns>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.UploadMultipleImagesAsync(Microsoft.AspNetCore.Http.IFormFileCollection,System.String)">
+            <summary>
+            Upload multiple images for an experience
+            </summary>
+            <param name="files">Collection of image files</param>
+            <param name="experienceId">ID of the experience</param>
+            <returns>List of URL paths to the uploaded images</returns>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.DeleteImageAsync(System.String)">
+            <summary>
+            Delete an image file
+            </summary>
+            <param name="imageUrl">URL path of the image to delete</param>
+            <returns>Task representing the asynchronous operation</returns>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.ValidateFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Validates that the file meets size and type requirements
+            </summary>
+            <param name="file">The file to validate</param>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.GenerateFileName(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Generates a unique filename for the uploaded image
+            </summary>
+            <param name="file">The image file</param>
+            <param name="experienceId">ID of the experience</param>
+            <returns>Unique filename</returns>
+        </member>
+        <member name="M:Experience.Application.Services.ImageUploadService.GetFileExtension(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Gets the appropriate file extension based on the file's content type
+            </summary>
+            <param name="file">The image file</param>
+            <returns>File extension with dot prefix</returns>
+        </member>
+        <member name="T:Experience.Domain.Enums.ExperienceStatus">
+            <summary>
+            Represents the status of an Experience in the system
+            </summary>
+        </member>
+        <member name="F:Experience.Domain.Enums.ExperienceStatus.Draft">
+            <summary>
+            The experience is in draft mode and not yet visible to customers
+            </summary>
+        </member>
+        <member name="F:Experience.Domain.Enums.ExperienceStatus.Published">
+            <summary>
+            The experience is published and available for booking
+            </summary>
+        </member>
+        <member name="F:Experience.Domain.Enums.ExperienceStatus.Cancelled">
+            <summary>
+            The experience has been cancelled by the agent or administrator
+            </summary>
+        </member>
+        <member name="F:Experience.Domain.Enums.ExperienceStatus.Completed">
+            <summary>
+            The experience date has passed and it has been completed
+            </summary>
+        </member>
+        <member name="T:Experience.Domain.Events.ExperienceCreatedEvent">
+            <summary>
+            Event raised when a new experience is created
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.ExperienceId">
+            <summary>
+            ID of the experience that was created
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.ExperienceDate">
+            <summary>
+            Date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.Location">
+            <summary>
+            Location of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.DurationInDays">
+            <summary>
+            Duration of the experience in days
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.AgentId">
+            <summary>
+            ID of the agent who created the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperienceCreatedEvent.CreatedAt">
+            <summary>
+            Timestamp when the experience was created
+            </summary>
+        </member>
+        <member name="T:Experience.Domain.Events.ExperiencePublishedEvent">
+            <summary>
+            Event raised when an experience is published
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperiencePublishedEvent.ExperienceId">
+            <summary>
+            ID of the experience that was published
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperiencePublishedEvent.Title">
+            <summary>
+            Title of the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperiencePublishedEvent.ExperienceDate">
+            <summary>
+            Date when the experience will take place
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperiencePublishedEvent.AgentId">
+            <summary>
+            ID of the agent who published the experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.Events.ExperiencePublishedEvent.PublishedAt">
+            <summary>
+            Timestamp when the experience was published
+            </summary>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.GetByIdAsync(Experience.Domain.ValueObjects.ExperienceId,System.Threading.CancellationToken)">
+            <summary>
+            Gets an experience by its ID
+            </summary>
+            <param name="id">The experience ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>The experience if found, null otherwise</returns>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.GetAllAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets all experiences
+            </summary>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A collection of all experiences</returns>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.GetByAgentIdAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Gets all experiences for a specific agent
+            </summary>
+            <param name="agentId">The agent ID</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A collection of experiences for the agent</returns>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.GetByStatusAsync(Experience.Domain.Enums.ExperienceStatus,System.Threading.CancellationToken)">
+            <summary>
+            Gets experiences by status
+            </summary>
+            <param name="status">The experience status</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns>A collection of experiences with the specified status</returns>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.AddAsync(Experience.Domain.Entities.Experience,System.Threading.CancellationToken)">
+            <summary>
+            Adds a new experience
+            </summary>
+            <param name="experience">The experience to add</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.UpdateAsync(Experience.Domain.Entities.Experience,System.Threading.CancellationToken)">
+            <summary>
+            Updates an existing experience
+            </summary>
+            <param name="experience">The experience to update</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:Experience.Domain.Repositories.IExperienceRepository.DeleteAsync(Experience.Domain.ValueObjects.ExperienceId,System.Threading.CancellationToken)">
+            <summary>
+            Deletes an experience by its ID
+            </summary>
+            <param name="id">The ID of the experience to delete</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="T:Experience.Domain.ValueObjects.ExperienceId">
+            <summary>
+            Value object representing a unique identifier for an Experience
+            </summary>
+        </member>
+        <member name="P:Experience.Domain.ValueObjects.ExperienceId.Value">
+            <summary>
+            The underlying ID value
+            </summary>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.#ctor(System.Guid)">
+            <summary>
+            Creates a new ExperienceId with the specified GUID
+            </summary>
+            <param name="id">The GUID value</param>
+            <exception cref="T:System.ArgumentException">Thrown when the provided ID is empty</exception>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.Create">
+            <summary>
+            Factory method to create a new ExperienceId with a random GUID
+            </summary>
+            <returns>A new ExperienceId instance</returns>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.Parse(System.String)">
+            <summary>
+            Factory method to parse a string representation of a GUID into an ExperienceId
+            </summary>
+            <param name="id">String representation of a GUID</param>
+            <returns>An ExperienceId instance</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the provided string is not a valid GUID</exception>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.ToString">
+            <summary>
+            Returns the string representation of the ExperienceId
+            </summary>
+            <returns>The string representation of the ID</returns>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.Equals(System.Object)">
+            <summary>
+            Determines whether this ExperienceId equals another object
+            </summary>
+            <param name="obj">The object to compare with</param>
+            <returns>True if they are equal, false otherwise</returns>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.GetHashCode">
+            <summary>
+            Returns the hash code for this ExperienceId
+            </summary>
+            <returns>The hash code</returns>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.op_Equality(Experience.Domain.ValueObjects.ExperienceId,Experience.Domain.ValueObjects.ExperienceId)">
+            <summary>
+            Equality operator
+            </summary>
+        </member>
+        <member name="M:Experience.Domain.ValueObjects.ExperienceId.op_Inequality(Experience.Domain.ValueObjects.ExperienceId,Experience.Domain.ValueObjects.ExperienceId)">
+            <summary>
+            Inequality operator
+            </summary>
+        </member>
+        <member name="T:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository">
+            <summary>
+            Repository implementation for Experience entities
+            </summary>
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.GetByIdAsync(Experience.Domain.ValueObjects.ExperienceId,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.GetAllAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.GetByAgentIdAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.GetByStatusAsync(Experience.Domain.Enums.ExperienceStatus,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.AddAsync(Experience.Domain.Entities.Experience,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.UpdateAsync(Experience.Domain.Entities.Experience,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Persistence.Repositories.ExperienceRepository.DeleteAsync(Experience.Domain.ValueObjects.ExperienceId,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.SaveImageAsync(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Save a single image file
+            </summary>
+            <param name="file">The image file</param>
+            <param name="experienceId">ID of the associated experience</param>
+            <returns>URL to access the saved image</returns>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.SaveMultipleImagesAsync(System.Collections.Generic.IEnumerable{Microsoft.AspNetCore.Http.IFormFile},System.String)">
+            <summary>
+            Save multiple image files
+            </summary>
+            <param name="files">Collection of image files</param>
+            <param name="experienceId">ID of the associated experience</param>
+            <returns>List of URLs to access the saved images</returns>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.DeleteImageAsync(System.String)">
+            <summary>
+            Delete an image by its URL
+            </summary>
+            <param name="imageUrl">URL of the image to delete</param>
+            <returns>True if successful, false otherwise</returns>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.ValidateFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Validates that the file meets size and type requirements
+            </summary>
+            <param name="file">The file to validate</param>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.GetUniqueFileName(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Generates a unique filename for the image
+            </summary>
+            <param name="file">The image file</param>
+            <returns>A unique filename</returns>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.GetFileExtension(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Gets the appropriate file extension based on the file's content type
+            </summary>
+            <param name="file">The image file</param>
+            <returns>File extension with dot prefix</returns>
+        </member>
+        <member name="M:Experience.Infrastructure.Services.ImageStorage.LocalFileImageStorage.TryCleanupDirectory(System.String)">
+            <summary>
+            Attempts to delete a directory if it's empty
+            </summary>
+            <param name="directory">Path to the directory</param>
+        </member>
+    </members>
+</doc>

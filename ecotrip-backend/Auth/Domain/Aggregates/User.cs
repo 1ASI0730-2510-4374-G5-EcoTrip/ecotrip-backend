@@ -7,9 +7,7 @@ public abstract class User
     public string Email { get; protected set; } = null!;
     public string PasswordHash { get; protected set; } = null!;
     public string UserType { get; protected set; } = null!;
-
-    // Required by EF Core
-    protected User() { }
+     protected User() { }
     
     protected User(string email, string passwordHash, string userType)
     {

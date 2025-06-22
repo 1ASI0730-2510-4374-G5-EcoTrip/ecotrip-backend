@@ -62,3 +62,4 @@ namespace Experience.API.Models
         [Url(ErrorMessage = "Please provide a valid URL for the main image")]
         public string MainImageUrl { get; set; }
     }
+}

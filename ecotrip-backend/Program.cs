@@ -8,6 +8,16 @@ using ecotrip_backend.Tourists.Domain;
 using ecotrip_backend.Tourists.Infrastructure.EF;
 using ecotrip_backend.Tourists.Infrastructure.Persistence;
 using ecotrip_backend.Tourists.Application;
+using Experience.Domain.Repositories;
+using Experience.Infrastructure.Persistence.Repositories;
+using Experience.Infrastructure.Persistence;
+using Experience.Application.Commands.CreateExperience;
+using Experience.Application.Commands.DeleteExperience;
+using Experience.Application.Commands.UpdateExperience;
+using Experience.Application.Queries.GetExperience;
+using Experience.Application.Queries.ListExperience;
+using Experience.Application.Services;
+using Experience.Infrastructure.Services.ImageStorage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.InMemory;
 
@@ -16,31 +26,40 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
-// Database setup
 if (builder.Environment.IsDevelopment())
 {
-    // Use in-memory repository for development
     builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-    
-    // For demonstration purposes, use in-memory DB for Tourist as well
     builder.Services.AddDbContext<EcoTripDbContext>(options =>
         options.UseInMemoryDatabase("TouristDb"));
+    builder.Services.AddDbContext<ExperienceDbContext>(options =>
+        options.UseInMemoryDatabase("ExperienceDb"));
 }
 else
 {
-    // Use SQL Server for production
     builder.Services.AddDbContext<AuthDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     
-    // Configure Tourist DB for production
     builder.Services.AddDbContext<EcoTripDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
+    builder.Services.AddDbContext<ExperienceDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITouristRepository, TouristRepository>();
 builder.Services.AddScoped<TouristService>();
+
+
+builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+builder.Services.AddScoped<CreateExperienceCommandHandler>();
+builder.Services.AddScoped<DeleteExperienceCommandHandler>();
+builder.Services.AddScoped<UpdateExperienceCommandHandler>();
+builder.Services.AddScoped<GetExperienceQueryHandler>();
+builder.Services.AddScoped<ListExperiencesQueryHandler>();
+builder.Services.AddScoped<ImageUploadService>();
+builder.Services.AddScoped<LocalFileImageStorage>();
 
 builder.Services.AddCors(options =>
 {
@@ -62,6 +81,14 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "API para la gestión de usuarios, viajes y destinos de EcoTrip."
     });
+    
+    // Include XML comments
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
 });
 
 var app = builder.Build();

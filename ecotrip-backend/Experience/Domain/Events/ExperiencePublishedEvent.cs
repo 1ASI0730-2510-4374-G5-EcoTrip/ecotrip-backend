@@ -1,7 +1,7 @@
 using System;
 using Experience.Domain.ValueObjects;
 
-namespace Experience.Domain.Event
+namespace Experience.Domain.Events
 {
     /// <summary>
     /// Event raised when an experience is published

@@ -5,15 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Experience.Application.DTOs;
 using Experience.Domain.Repositories;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Experience.Application.Queries.ListExperiences
+namespace Experience.Application.Queries.ListExperience
 {
     /// <summary>
     /// Handler for listing experiences with filtering, sorting, and pagination
     /// </summary>
-    public class ListExperiencesQueryHandler : IRequestHandler<ListExperiencesQuery, IEnumerable<ExperienceDTO>>
+    public class ListExperiencesQueryHandler
     {
         private readonly IExperienceRepository _experienceRepository;
         private readonly ILogger<ListExperiencesQueryHandler> _logger;

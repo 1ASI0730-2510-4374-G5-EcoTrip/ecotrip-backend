@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Experience.API.Controllers
-{
+namespace ecotrip_backend.Controllers;
     [ApiController]
     [Route("api/experiences")]
     [Authorize(Roles = "Agent")]
@@ -180,15 +179,14 @@ namespace Experience.API.Controllers
         [HttpPut("{experienceId}/images/main")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult> SetMainImage(
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]        public Task<ActionResult> SetMainImage(
             [FromRoute] string experienceId,
             [FromQuery] string imageUrl)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(imageUrl))
-                    return BadRequest("Image URL is required");
+                    return Task.FromResult<ActionResult>(BadRequest("Image URL is required"));
 
                 ExperienceId id;
                 try
@@ -197,27 +195,23 @@ namespace Experience.API.Controllers
                 }
                 catch (ArgumentException)
                 {
-                    return BadRequest("Invalid experience ID format");
-                }
-
-                _logger.LogInformation("Setting main image {ImageUrl} for experience: {ExperienceId}", imageUrl, experienceId);
+                    return Task.FromResult<ActionResult>(BadRequest("Invalid experience ID format"));
+                }                _logger.LogInformation("Setting main image {ImageUrl} for experience: {ExperienceId}", imageUrl, experienceId);
                 
                 // Call a service method to set this as the main image
                 // This might require implementation in the ImageUploadService or via a command handler
                 // await _imageUploadService.SetMainImageAsync(id, imageUrl);
                 
-                return Ok(new { Message = "Main image set successfully" });
+                return Task.FromResult<ActionResult>(Ok(new { Message = "Main image set successfully" }));
             }
             catch (ArgumentException ex)
             {
                 _logger.LogWarning(ex, "Invalid set main image attempt: {Message}", ex.Message);
-                return BadRequest(ex.Message);
+                return Task.FromResult<ActionResult>(BadRequest(ex.Message));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error setting main image: {Message}", ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error setting main image");
-            }
+                _logger.LogError(ex, "Error setting main image: {Message}", ex.Message);            return Task.FromResult<ActionResult>(StatusCode(StatusCodes.Status500InternalServerError, "Error setting main image"));
         }
     }
 }

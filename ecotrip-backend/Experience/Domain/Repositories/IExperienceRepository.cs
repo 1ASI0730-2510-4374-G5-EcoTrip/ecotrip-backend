@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Experience.Domain.Entities;
 using Experience.Domain.ValueObjects;
+using Experience.Domain.Enums;
 
 namespace Experience.Domain.Repositories
 {
@@ -14,7 +15,7 @@ namespace Experience.Domain.Repositories
         /// <param name="id">The experience ID</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The experience if found, null otherwise</returns>
-        Task<Entities.Experience> GetByIdAsync(ExperienceId id, CancellationToken cancellationToken = default);
+        Task<Entities.Experience?> GetByIdAsync(ExperienceId id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets all experiences
@@ -37,7 +38,7 @@ namespace Experience.Domain.Repositories
         /// <param name="status">The experience status</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>A collection of experiences with the specified status</returns>
-        Task<IEnumerable<Entities.Experience>> GetByStatusAsync(Enums.ExperienceStatus status, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Entities.Experience>> GetByStatusAsync(ExperienceStatus status, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Adds a new experience

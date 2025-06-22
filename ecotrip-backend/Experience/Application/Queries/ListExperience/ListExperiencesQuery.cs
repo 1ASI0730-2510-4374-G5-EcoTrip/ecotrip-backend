@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using Experience.Application.DTOs;
-using MediatR;
 
-namespace Experience.Application.Queries.ListExperiences
+namespace Experience.Application.Queries.ListExperience
 {
     /// <summary>
     /// Query to list experiences with optional filtering and pagination
     /// </summary>
-    public class ListExperiencesQuery : IRequest<IEnumerable<ExperienceDTO>>
+    public class ListExperiencesQuery
     {
         /// <summary>
         /// Number of items to skip for pagination
@@ -22,7 +21,7 @@ namespace Experience.Application.Queries.ListExperiences
         /// <summary>
         /// Optional filter by location
         /// </summary>
-        public string LocationFilter { get; set; }
+        public string? LocationFilter { get; set; }
 
         /// <summary>
         /// Optional filter by minimum price

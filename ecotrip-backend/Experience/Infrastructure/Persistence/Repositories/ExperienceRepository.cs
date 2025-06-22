@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Experience.Domain.Enum;
+using Experience.Domain.Enums;
 using Experience.Domain.Repositories;
 using Experience.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +26,7 @@ namespace Experience.Infrastructure.Persistence.Repositories
         }
 
         /// <inheritdoc />
-        public async Task<Domain.Entities.Experience> GetByIdAsync(ExperienceId id, CancellationToken cancellationToken = default)
+        public async Task<Domain.Entities.Experience?> GetByIdAsync(ExperienceId id, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation("Getting experience with ID: {ExperienceId}", id);
             

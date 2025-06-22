@@ -3,28 +3,27 @@ using System.Threading;
 using System.Threading.Tasks;
 using Experience.Domain.Repositories;
 using Experience.Domain.ValueObjects;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Experience.Application.Commands.UpdateExperience
+namespace Experience.Application.Commands.UpdateExperience;
+
+/// <summary>
+/// Handler for updating an existing experience
+/// </summary>
+public class UpdateExperienceCommandHandler
 {
-    /// <summary>
-    /// Handler for updating an existing experience
-    /// </summary>
-    public class UpdateExperienceCommandHandler : IRequestHandler<UpdateExperienceCommand, Unit>
+    private readonly IExperienceRepository _experienceRepository;
+    private readonly ILogger<UpdateExperienceCommandHandler> _logger;
+
+    public UpdateExperienceCommandHandler(
+        IExperienceRepository experienceRepository,
+        ILogger<UpdateExperienceCommandHandler> logger)
     {
-        private readonly IExperienceRepository _experienceRepository;
-        private readonly ILogger<UpdateExperienceCommandHandler> _logger;
+        _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
-        public UpdateExperienceCommandHandler(
-            IExperienceRepository experienceRepository,
-            ILogger<UpdateExperienceCommandHandler> logger)
-        {
-            _experienceRepository = experienceRepository ?? throw new ArgumentNullException(nameof(experienceRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
-        public async Task<Unit> Handle(UpdateExperienceCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateExperienceCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Attempting to update experience with ID: {ExperienceId}", request.Id);
 
@@ -63,20 +62,15 @@ namespace Experience.Application.Commands.UpdateExperience
                 if (experience.Price != newPrice)
                 {
                     experience.UpdatePrice(newPrice);
-                }
+                }            // Save the changes
+            await _experienceRepository.UpdateAsync(experience, cancellationToken);
 
-                // Save the changes
-                await _experienceRepository.UpdateAsync(experience, cancellationToken);
-
-                _logger.LogInformation("Successfully updated experience with ID: {ExperienceId}", request.Id);
-
-                return Unit.Value;
-            }
-            catch (Exception ex) when (ex is not UnauthorizedAccessException && ex is not ApplicationException)
-            {
-                _logger.LogError(ex, "Error updating experience {ExperienceId}: {ErrorMessage}", request.Id, ex.Message);
-                throw;
-            }
+            _logger.LogInformation("Successfully updated experience with ID: {ExperienceId}", request.Id);
+        }
+        catch (Exception ex) when (ex is not UnauthorizedAccessException && ex is not ApplicationException)
+        {
+            _logger.LogError(ex, "Error updating experience {ExperienceId}: {ErrorMessage}", request.Id, ex.Message);
+            throw;
         }
     }
 }
