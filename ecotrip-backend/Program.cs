@@ -22,6 +22,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.InMemory;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Kestrel for Render deployment
+builder.WebHost.ConfigureKestrel(options =>
+{
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+    options.ListenAnyIP(int.Parse(port));
+});
+
 builder.Services.AddControllers();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
@@ -96,15 +104,25 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
+
+// Enable Swagger in all environments for Render deployment
+app.UseSwagger();
+app.UseSwaggerUI(options => 
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options => 
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "EcoTrip API v1");
+    options.RoutePrefix = "swagger";
+});
+
+// Configure the HTTP request pipeline
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "EcoTrip API v1");
-        options.RoutePrefix = string.Empty;
-    });
-}
+        context.Response.Redirect("/swagger");
+        return;
+    }
+    await next();
+});
 
 app.UseHttpsRedirection();
 app.UseCors();
